@@ -1,7 +1,6 @@
 library(dplyr)
 library(broom)
 
-setwd("C://Users/Andy/Desktop/DS/Learning Journal")
 data_viz <- read.csv("data_viz_website_2018_04.csv")
 
 library(dplyr)
