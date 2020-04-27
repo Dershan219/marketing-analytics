@@ -1,7 +1,7 @@
 library(dplyr)
 
 retail <-
-  read.csv("C:/Users/Andy/Desktop/DS/Learning Journal/OnlineRetail.csv")
+  read.csv("OnlineRetail.csv")
 retail$InvoiceDate <-
   as.Date(retail$InvoiceDate, tryFormat = "%d-%m-%Y")
 
