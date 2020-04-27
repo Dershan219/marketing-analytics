@@ -12,7 +12,8 @@ retail$InvoiceDate <-
   as.Date(retail$InvoiceDate, tryFormat = "%d-%m-%Y")
 ```
 
-Grouping the data to calculate recency, frequency, and monetary value for each customer. On top of that, I gave them rankings accordingly for sake of quick comparison. 
+Grouping the data to calculate recency, frequency, and monetary value for each customer.
+On top of that, I gave them rankings accordingly for sake of quick comparison. 
 ```{r}
 retail.rfm <-
   retail %>% na.omit() %>% group_by(CustomerID) %>%
@@ -28,7 +29,9 @@ retail.rfm <-
   )
 ```
 
-Next, we can calculate the RFM scores and give each customer a cluster. There are infinite ways of doing this, but I chose to give them scores according to their quartile ranks and used kmeans to cluster the customers into 5 groups.
+Next, we can calculate the RFM scores and give each customer a cluster.
+There are infinite ways of doing this, but I chose to give them scores according to their quartile ranks,
+and further used kmeans to cluster the customers into 5 groups.
 ```{r}
 scores <- function(x, rng) {
   if (x <= quantile(rng, .2))
@@ -57,7 +60,8 @@ retail.kmeans <- kmeans(retail.rfm[, 8:10], 5)
 retail.rfm$cluster <- retail.kmeans$cluster
 ```
 
-The BGNBD model can be quite helpful for determining customers' survival rate, as well as their expected number of transactions in a given time frame. 
+The BGNBD model can be quite helpful for determining customers' survival rate,
+as well as their expected number of transactions in a given time frame. 
 ```{r}
 library(BTYD)
 library(BTYDplus)
